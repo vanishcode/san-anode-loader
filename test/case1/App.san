@@ -1,0 +1,13 @@
+<template>
+    <span class="app">Hello, {{name}}</span>
+</template>
+
+<script>
+export default {
+    initData() {
+        return {
+            name: 'San anode loader!',
+        }
+    }
+}
+</script>
