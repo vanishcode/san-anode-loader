@@ -1,0 +1,30 @@
+{
+    "name": "san-anode-loader-demo",
+    "version": "1.0.0",
+    "private": true,
+    "description": "demo for san anode webpack loader",
+    "main": "webpack.config.js",
+    "scripts": {
+        "start": "webpack && http-server -c-1 dist",
+        "build": "webpack --progress"
+    },
+    "author": "wangjinghao@baidu.com",
+    "devDependencies": {
+        "@babel/preset-env": "^7.9.6",
+        "@babel/preset-typescript": "^7.9.0",
+        "babel-loader": "^8.1.0",
+        "css-loader": "^3.5.3",
+        "html-loader": "^1.1.0",
+        "html-webpack-plugin": "^4.3.0",
+        "http-server": "^0.12.3",
+        "pug": "^3.0.2",
+        "pug-plain-loader": "^1.1.0",
+        "san": "~3.9.0",
+        "san-hot-loader": "^0.1.1",
+        "style-loader": "^1.2.1",
+        "san-loader": "^0.2.1",
+        "webpack": "^4.43.0",
+        "webpack-cli": "^3.3.11"
+    },
+    "license": "MIT"
+}

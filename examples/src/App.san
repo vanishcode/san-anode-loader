@@ -1,0 +1,21 @@
+<template lang="pug">
+.app
+    h1 Hello {{name}}!
+</template>
+
+<script>
+export default {
+    initData() {
+        return {
+            name: 'San anode loader!',
+        }
+    }
+}
+</script>
+
+<style>
+.app {
+    font-size: 2rem;
+    color: cyan;
+}
+</style>
