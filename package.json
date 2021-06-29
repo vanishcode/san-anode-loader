@@ -1,0 +1,37 @@
+{
+    "name": "san-anode-loader",
+    "version": "0.1.1",
+    "description": "一个将san单文件组件中的template编译为anode或apack的loader",
+    "main": "index.js",
+    "scripts": {
+        "test": "npm run lint && ava test/*.test.js",
+        "lint": "eslint --fix ./*.js",
+        "dev": "cd examples && npm run start",
+        "build": "cd examples && npm run build"
+    },
+    "keywords": [
+        "san",
+        "webpack",
+        "san-loader"
+    ],
+    "author": "wangjinghao@baidu.com",
+    "license": "ISC",
+    "dependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.14.5",
+        "@babel/preset-env": "^7.14.7",
+        "@webpack-contrib/eslint-config-webpack": "^3.0.0",
+        "ava": "^3.15.0",
+        "babel-loader": "^8.2.2",
+        "eslint": "^7.29.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-import": "^2.23.4",
+        "html-loader": "^1.1.2",
+        "loader-utils": "^2.0.0",
+        "pug": "^3.0.2",
+        "pug-plain-loader": "^1.1.0",
+        "san-anode-utils": "^3.10.0",
+        "san-hot-loader": "^0.1.2",
+        "san-loader": "^0.2.1",
+        "webpack": "^4.46.0"
+    }
+}
