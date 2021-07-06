@@ -14,7 +14,11 @@
         "webpack",
         "san-loader"
     ],
-    "author": "wangjinghao@baidu.com",
+    "author": "baidu",
+    "maintainers": [
+        "wangjinghao@baidu.com",
+        "luoyi06@baidu.com"
+    ],
     "license": "ISC",
     "dependencies": {
         "@babel/core": "^7.12.10",
