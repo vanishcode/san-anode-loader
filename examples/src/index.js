@@ -10,12 +10,11 @@ const App2 = san.defineComponent({
         </div>
     `,
     components: {
-        'ui-demo': Video
+        'ui-demo': Video,
     },
     initData() {
-        return {
-        };
-    }
+        return {};
+    },
 });
 
 const app1 = new App();

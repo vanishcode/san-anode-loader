@@ -1,7 +1,9 @@
 module.exports = {
     root: true,
-    extends: ["@webpack-contrib/eslint-config-webpack", "prettier"],
+    plugins: ['prettier'],
+    extends: ['@webpack-contrib/eslint-config-webpack', 'prettier'],
     rules: {
-        "func-names": 0,
+        'prettier/prettier': 'error',
+        'func-names': 0,
     },
 };

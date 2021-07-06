@@ -8,12 +8,12 @@
  * @author clark-t
  */
 
-import {Component} from 'san';
+import { Component } from 'san';
 
 import styles from '../style.module.less';
 
 export default class Text extends Component {
-    static template = /* html */`
+    static template = /* html */ `
         <div class="{{styles.text}}">
             hello luoyi_maid!
         </div>
@@ -22,17 +22,15 @@ export default class Text extends Component {
     static computed = {
         filterText() {
             return `<em class="{{styles.amount}}">10</em>`;
-        }
+        },
     };
 
-    static component = {
-
-    };
+    static component = {};
 
     initData() {
         return {
             container: 'luoyi06',
-            styles
+            styles,
         };
     }
     inited() {
@@ -42,4 +40,4 @@ export default class Text extends Component {
     attached() {
         console.log('component attached');
     }
-};
+}

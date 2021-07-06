@@ -8,13 +8,13 @@
  * @author clark-t
  */
 
-import {Component} from 'san';
+import { Component } from 'san';
 import Text from './component/text';
 import styles from './style.module.less';
 console.log(styles);
 
 export default class Video extends Component {
-    static template = /* html */`
+    static template = /* html */ `
         <div class="{{styles.searchWordItem}}">
             hello world!
             <led-text class="{{styles.componentText}}" style="border: 1px solid red;"/>
@@ -24,21 +24,19 @@ export default class Video extends Component {
     static computed = {
         filterText() {
             return `<em class="{{styles.amount}}">10</em>`;
-        }
+        },
     };
 
     static components = {
-        'led-text': Text
-    }
-
-    static component = {
-
+        'led-text': Text,
     };
+
+    static component = {};
 
     initData() {
         return {
             container: 'luoyi06',
-            styles
+            styles,
         };
     }
     inited() {
@@ -48,4 +46,4 @@ export default class Video extends Component {
     attached() {
         console.log('attached');
     }
-};
+}
