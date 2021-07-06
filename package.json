@@ -1,6 +1,6 @@
 {
     "name": "san-anode-loader",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "一个将san单文件组件中的template编译为anode或apack的loader",
     "main": "index.js",
     "scripts": {
