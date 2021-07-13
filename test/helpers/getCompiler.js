@@ -44,6 +44,9 @@ export default (fixture, loaderOptions = {}, config = {}) => {
             test: /\.pug$/,
             use: [
                 {
+                    loader: require.resolve("./testLoader"),
+                },
+                {
                     loader: 'html-loader',
                 },
                 {

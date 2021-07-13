@@ -5,29 +5,34 @@ import {
     getCompiler,
 } from './helpers';
 
-describe('parse sfc', () => {
-    it('set aNode mode!', async () => {
-        const testId = 'anode.san';
+describe('parse sfc with lang attribute', () => {
+    it('aNode mode with pug', async () => {
+        const testId = 'anode-pug.san';
         const options = {
             compileTemplate: 'aNode',
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
         const codeFromBundle = getCodeFromBundle(stats, compiler);
-        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
+        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
+            ...options,
+            testType: 'pug'
+        });
         expect(codeFromBundle).toStrictEqual(codeFromANodeUtils);
     });
 
-    it('set aPack mode!', async () => {
-        const testId = 'apack.san';
+    it('aPack mode with pug', async () => {
+        const testId = 'apack-pug.san';
         const options = {
             compileTemplate: 'aPack',
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
         const codeFromBundle = getCodeFromBundle(stats, compiler);
-        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
-
+        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
+            ...options,
+            testType: 'pug'
+        });
         let eq = true;
         for (let index = 0; index < codeFromBundle.length; index++) {
             const item = codeFromBundle[index];
@@ -39,16 +44,18 @@ describe('parse sfc', () => {
         expect(eq).toBe(true);
     });
 
-    it('with no options!', async () => {
-        const testId = 'anode.san';
+    it('no options, use default', async () => {
+        const testId = 'apack-pug.san';
         const options = {
             compileTemplate: 'none',
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
         const codeFromBundle = getCodeFromBundle(stats, compiler);
-        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
-        
+        const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
+            ...options,
+            testType: 'pug'
+        });        
         let eq = true;
         for (let index = 0; index < codeFromBundle.length; index++) {
             const item = codeFromBundle[index];

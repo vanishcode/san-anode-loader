@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs';
 
 import aNodeUtils from 'san-anode-utils';
+import pug from 'pug';
 
 async function getCodeFromANodeUtils(testId, options = {}) {
     const pathToFile = path.resolve(__dirname, '..', 'fixtures', testId);
@@ -21,8 +22,17 @@ async function getCodeFromANodeUtils(testId, options = {}) {
 
     let data = await fs.promises.readFile(pathToFile);
 
-    // process the `template`
-    let originCode = data.toString().replace(/<template>/g, '').replace(/<\/template>/g, '')
+    // process the `template` and with `lang` attr
+    let originCode = data
+        .toString()
+        .replace(/<template>/g, '')
+        .replace(/<\/template>/g, '');
+
+    if (options.testType === 'pug') {
+        originCode = pug.render(
+            originCode.replace(/<template lang="pug">/g, '')
+        );
+    }
 
     const aNode = aNodeUtils.parseTemplate(originCode);
     switch (mergedOptions.compileTemplate) {
