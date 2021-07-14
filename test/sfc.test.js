@@ -13,7 +13,12 @@ describe('parse sfc', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
         expect(codeFromBundle).toStrictEqual(codeFromANodeUtils);
     });
@@ -25,7 +30,12 @@ describe('parse sfc', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
 
         let eq = true;
@@ -46,9 +56,14 @@ describe('parse sfc', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, options);
-        
+
         let eq = true;
         for (let index = 0; index < codeFromBundle.length; index++) {
             const item = codeFromBundle[index];

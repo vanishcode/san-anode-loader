@@ -13,10 +13,15 @@ describe('parse sfc with lang attribute', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
             ...options,
-            testType: 'pug'
+            lang: 'pug',
         });
         expect(codeFromBundle).toStrictEqual(codeFromANodeUtils);
     });
@@ -28,10 +33,15 @@ describe('parse sfc with lang attribute', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
             ...options,
-            testType: 'pug'
+            lang: 'pug',
         });
         let eq = true;
         for (let index = 0; index < codeFromBundle.length; index++) {
@@ -51,11 +61,16 @@ describe('parse sfc with lang attribute', () => {
         };
         const compiler = getCompiler(testId, options);
         const stats = await compile(compiler);
-        const codeFromBundle = getCodeFromBundle(stats, compiler);
+        const codeFromBundle = getCodeFromBundle(
+            stats,
+            compiler,
+            'main.bundle.js',
+            options
+        );
         const codeFromANodeUtils = await getCodeFromANodeUtils(testId, {
             ...options,
-            testType: 'pug'
-        });        
+            lang: 'pug',
+        });
         let eq = true;
         for (let index = 0; index < codeFromBundle.length; index++) {
             const item = codeFromBundle[index];

@@ -3,6 +3,7 @@ import fs from 'fs';
 
 import aNodeUtils from 'san-anode-utils';
 import pug from 'pug';
+import san from 'san';
 
 async function getCodeFromANodeUtils(testId, options = {}) {
     const pathToFile = path.resolve(__dirname, '..', 'fixtures', testId);
@@ -20,35 +21,49 @@ async function getCodeFromANodeUtils(testId, options = {}) {
 
     let res = [];
 
-    let data = await fs.promises.readFile(pathToFile);
+    let data;
+    let sanfile = await fs.promises.readFile(pathToFile);
+    let parser;
 
-    // process the `template` and with `lang` attr
-    let originCode = data
-        .toString()
-        .replace(/<template>/g, '')
-        .replace(/<\/template>/g, '');
+    let tpl;
 
-    if (options.testType === 'pug') {
-        originCode = pug.render(
-            originCode.replace(/<template lang="pug">/g, '')
-        );
+    if (options.testType === 'injs') {
+        tpl = require(pathToFile).default.template;
+        data = san.defineComponent({
+            template: tpl,
+        });
+        parser = aNodeUtils.parseComponentTemplate;
+    } else {
+        // process the `template` and with `lang` attr
+        data = sanfile
+            .toString()
+            .replace(/<template>/g, '')
+            .replace(/<\/template>/g, '');
+
+        if (options.lang === 'pug') {
+            data = pug.render(data.replace(/<template lang="pug">/g, ''));
+        }
+
+        parser = aNodeUtils.parseTemplate;
     }
 
-    const aNode = aNodeUtils.parseTemplate(originCode);
+    const aNode = parser(data);
     switch (mergedOptions.compileTemplate) {
         case 'aNode':
             res = aNode;
             break;
         case 'aPack':
             if (aNode.children.length) {
-                const aPack = aNodeUtils.pack(aNode.children[0]);
+                const aPack = aNodeUtils.pack(
+                    options.testType === 'injs' ? aNode : aNode.children[0]
+                );
                 res = aPack;
             } else {
                 res = [];
             }
             break;
         default:
-            res = originCode;
+            res = options.testType === 'injs' ? tpl : data;
             break;
     }
 
